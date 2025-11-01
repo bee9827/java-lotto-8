@@ -6,6 +6,8 @@ public enum LottoErrorCode {
     NUMBERS_DUPLICATED("로또 번호는 중복될 수 없습니다."),
     MONEY_UNIT("로또 돈은 %d 단위로 입력해 주세요".formatted(LottoMoney.UNIT)),
     MONEY_NOT_USED("사용된 돈이 없습니다."),
+
+    NUMBER_FORMAT("숫자를 입력해 주세요"),
     ;
     private final String message;
 

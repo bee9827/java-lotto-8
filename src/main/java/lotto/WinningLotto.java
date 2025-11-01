@@ -5,9 +5,9 @@ import java.util.List;
 public class WinningLotto extends Lotto {
     private final LottoNumber bonusNumber;
 
-    public WinningLotto(List<Integer> numbers, LottoNumber bonusNumber) {
+    public WinningLotto(List<Integer> numbers, Integer bonusNumber) {
         super(numbers);
-        this.bonusNumber = bonusNumber;
+        this.bonusNumber = new LottoNumber(bonusNumber);
     }
 
     public WinningResult matching(Lotto lotto) {

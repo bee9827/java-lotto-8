@@ -13,8 +13,8 @@ class WinningLottoTest {
     public static final WinningLotto DEFAULT_WINNING_LOTTO
             = new WinningLotto(LottoTest.getDefaultNumbers(), getDEFAULT_BONUS_NUMBER());
 
-    private static LottoNumber getDEFAULT_BONUS_NUMBER() {
-        return new LottoNumber(7);
+    private static Integer getDEFAULT_BONUS_NUMBER() {
+        return 7;
     }
 
     public static Stream<Arguments> matching() {

@@ -31,7 +31,7 @@ class WinningLottoTest {
     }
 
     @DisplayName("matching: 각 등수에 맞는 Enum을 리턴한다")
-    @ParameterizedTest
+    @ParameterizedTest(name = "[{1}]\t: {0}")
     @MethodSource
     void matching(Lotto lotto, WinningResult expected) {
         WinningResult result = DEFAULT_WINNING_LOTTO.matching(lotto);

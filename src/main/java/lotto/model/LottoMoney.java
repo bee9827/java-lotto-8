@@ -1,4 +1,6 @@
-package lotto;
+package lotto.model;
+
+import lotto.error.LottoErrorCode;
 
 public class LottoMoney {
     public static final int UNIT = 1000;

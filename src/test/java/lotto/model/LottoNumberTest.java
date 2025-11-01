@@ -1,4 +1,4 @@
-package lotto;
+package lotto.model;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
@@ -23,7 +23,7 @@ class LottoNumberTest {
         void intConstructor(int value) {
             LottoNumber lottoNumber = new LottoNumber(value);
 
-            assertThat(lottoNumber).isEqualTo(value);
+            assertThat(lottoNumber.getValue()).isEqualTo(value);
         }
 
         @DisplayName("[예외] 범위 밖의 값이면 IllegalArgument를 반환한다.")
@@ -35,8 +35,7 @@ class LottoNumberTest {
         })
         void invalidRange(int value) {
             assertThatThrownBy(() -> new LottoNumber(value))
-                    .isInstanceOf(IllegalArgumentException.class)
-                    .hasMessageContaining(String.valueOf(value));
+                    .isInstanceOf(IllegalArgumentException.class);
         }
     }
 

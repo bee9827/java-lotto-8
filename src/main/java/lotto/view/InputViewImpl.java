@@ -1,7 +1,8 @@
-package lotto;
+package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
 import java.util.List;
+import lotto.util.Parser;
 
 public class InputViewImpl implements InputView {
     @Override

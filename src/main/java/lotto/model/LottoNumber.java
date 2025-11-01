@@ -1,16 +1,17 @@
-package lotto;
+package lotto.model;
 
 import java.util.Objects;
+import lotto.error.LottoErrorCode;
 
 public class LottoNumber {
     public static final int MIN_VALUE = 1;
     public static final int MAX_VALUE = 45;
 
-    private final int number;
+    private final int value;
 
-    public LottoNumber(int number) {
-        validateAll(number);
-        this.number = number;
+    public LottoNumber(int value) {
+        validateAll(value);
+        this.value = value;
     }
 
     private void validateAll(int number) {
@@ -23,8 +24,8 @@ public class LottoNumber {
         }
     }
 
-    public int getNumber() {
-        return number;
+    public int getValue() {
+        return value;
     }
 
     @Override
@@ -36,16 +37,16 @@ public class LottoNumber {
             return false;
         }
 
-        return number == that.number;
+        return value == that.value;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(number);
+        return Objects.hash(value);
     }
 
     @Override
     public String toString() {
-        return number + "";
+        return value + "";
     }
 }

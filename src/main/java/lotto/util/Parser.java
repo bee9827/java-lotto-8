@@ -1,7 +1,8 @@
-package lotto;
+package lotto.util;
 
 import java.util.Arrays;
 import java.util.List;
+import lotto.error.LottoErrorCode;
 
 public class Parser {
     public static final String DEFAULT_DELIMITER = ",";

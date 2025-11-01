@@ -1,4 +1,8 @@
-package lotto;
+package lotto.error;
+
+import lotto.model.Lotto;
+import lotto.model.LottoMoney;
+import lotto.model.LottoNumber;
 
 public enum LottoErrorCode {
     NUMBER_RANGE("로또 번호는 %d ~ %d 값 이어야 합니다.".formatted(LottoNumber.MIN_VALUE, LottoNumber.MAX_VALUE)),

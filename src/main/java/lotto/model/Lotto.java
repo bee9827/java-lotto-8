@@ -1,7 +1,8 @@
-package lotto;
+package lotto.model;
 
 import java.util.HashSet;
 import java.util.List;
+import lotto.error.LottoErrorCode;
 
 public class Lotto {
     public static final int SIZE = 6;

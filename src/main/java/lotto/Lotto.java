@@ -1,5 +1,6 @@
 package lotto;
 
+import java.util.Collections;
 import java.util.List;
 
 public class Lotto {
@@ -23,5 +24,14 @@ public class Lotto {
                 .toList();
     }
 
+    protected int matchCount(Lotto other) {
+        return numbers.stream()
+                .filter(other.numbers::contains)
+                .toList()
+                .size();
+    }
 
+    public List<LottoNumber> getNumbers() {
+        return Collections.unmodifiableList(numbers);
+    }
 }

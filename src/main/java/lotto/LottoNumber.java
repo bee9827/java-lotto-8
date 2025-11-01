@@ -23,10 +23,6 @@ public class LottoNumber {
         }
     }
 
-    public boolean isMatch(LottoNumber other) {
-        return number == other.number;
-    }
-
     public int getNumber() {
         return number;
     }

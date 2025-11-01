@@ -15,13 +15,13 @@ public class Lotto {
 
     private void validateSize(List<Integer> numbers) {
         if (numbers.size() != SIZE) {
-            throw new IllegalArgumentException(ErrorCode.LOTTO_SIZE.getMessage());
+            throw new IllegalArgumentException(LottoErrorCode.NUMBERS_SIZE.getMessage());
         }
     }
 
     private void validateDuplicate(List<Integer> numbers) {
         if (isDuplicate(numbers)) {
-            throw new IllegalArgumentException(ErrorCode.LOTTO_DUPLICATED.getMessage());
+            throw new IllegalArgumentException(LottoErrorCode.NUMBERS_DUPLICATED.getMessage());
         }
     }
 

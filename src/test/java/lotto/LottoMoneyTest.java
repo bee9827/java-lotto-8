@@ -29,7 +29,7 @@ class LottoMoneyTest {
     })
     void getRevenueRate(long money, long revenue, double revenueRate) {
         LottoMoney lottoMoney = new LottoMoney(money);
-
+        lottoMoney.purchaseTicket();
         assertThat(lottoMoney.getRevenueRate(revenue)).isEqualTo(revenueRate);
     }
 
@@ -41,7 +41,7 @@ class LottoMoneyTest {
         void money(long money) {
             LottoMoney lottoMoney = new LottoMoney(money);
 
-            assertThat(lottoMoney.getMoney()).isEqualTo(money);
+            assertThat(lottoMoney.getRemainedMoney()).isEqualTo(money);
         }
 
         @ParameterizedTest

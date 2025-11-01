@@ -2,12 +2,14 @@ package lotto;
 
 public class LottoMoney {
     public static final int UNIT = 1000;
-    public static final int PERCENTAGE = 100;
-    private final long money;
+    public static final double PERCENTAGE = 100;
+    private long remainedMoney;
+    private long usedMoney;
 
-    public LottoMoney(long money) {
-        validateUnit(money);
-        this.money = money;
+    public LottoMoney(long rest) {
+        validateUnit(rest);
+        this.remainedMoney = rest;
+        usedMoney = 0;
     }
 
     private void validateUnit(long money) {
@@ -17,14 +19,20 @@ public class LottoMoney {
     }
 
     public int purchaseTicket() {
-        return (int) money / UNIT;
+        long usingMoney = remainedMoney;
+        remainedMoney = 0;
+        usedMoney += usingMoney;
+        return (int) usingMoney / UNIT;
     }
 
     public double getRevenueRate(Long revenue) {
-        return revenue.doubleValue() / money * PERCENTAGE;
+        if (usedMoney == 0) {
+            throw new IllegalStateException(LottoErrorCode.MONEY_UNIT.getMessage());
+        }
+        return revenue.doubleValue() / usedMoney * PERCENTAGE;
     }
 
-    public long getMoney() {
-        return money;
+    public long getRemainedMoney() {
+        return remainedMoney;
     }
 }

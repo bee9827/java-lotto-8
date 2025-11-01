@@ -19,7 +19,7 @@ public class LottoNumber {
 
     private void validateRange(int number) {
         if (number < MIN_VALUE || number > MAX_VALUE) {
-            throw new IllegalArgumentException(ErrorCode.INVALID_LOTTO_NUMBER.format(MIN_VALUE, MAX_VALUE, number));
+            throw new IllegalArgumentException(ErrorCode.INVALID_LOTTO_NUMBER.getMessage());
         }
     }
 

@@ -52,7 +52,7 @@ class LottoNumberTest {
         LottoNumber second = new LottoNumber(otherLottoNumber);
 
         //when
-        boolean match = first.isMatch(second);
+        boolean match = first.equals(second);
 
         //then
         assertThat(match).isEqualTo(expected);

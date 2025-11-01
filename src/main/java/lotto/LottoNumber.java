@@ -19,7 +19,7 @@ public class LottoNumber {
 
     private void validateRange(int number) {
         if (number < MIN_VALUE || number > MAX_VALUE) {
-            throw new IllegalArgumentException(ErrorCode.INVALID_LOTTO_NUMBER.getMessage());
+            throw new IllegalArgumentException(ErrorCode.LOTTO_NUMBER_RANGE.getMessage());
         }
     }
 
@@ -42,5 +42,10 @@ public class LottoNumber {
     @Override
     public int hashCode() {
         return Objects.hash(number);
+    }
+
+    @Override
+    public String toString() {
+        return number + "";
     }
 }

@@ -14,11 +14,7 @@ public class WinningLotto extends Lotto {
         return WinningResult.of(matchCount(lotto), matchBonusNumber(lotto));
     }
 
-    public boolean matchBonusNumber(Lotto lotto) {
+    private boolean matchBonusNumber(Lotto lotto) {
         return lotto.contains(bonusNumber);
-    }
-
-    public LottoNumber getBonusNumber() {
-        return bonusNumber;
     }
 }

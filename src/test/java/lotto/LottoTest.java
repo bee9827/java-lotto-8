@@ -13,11 +13,15 @@ import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.MethodSource;
 
 class LottoTest {
-    private static final Lotto DEFAULT_LOTTO = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+    public static final Lotto DEFAULT_LOTTO = new Lotto(getDefaultNumbers());
+
+    public static List<Integer> getDefaultNumbers() {
+        return List.of(1, 2, 3, 4, 5, 6);
+    }
 
     public static Stream<Arguments> matchCount() {
         return Stream.of(
-                Arguments.of(List.of(1, 2, 3, 4, 5, 6), 6),
+                Arguments.of(getDefaultNumbers(), 6),
                 Arguments.of(List.of(1, 2, 3, 4, 5, 45), 5),
                 Arguments.of(List.of(1, 2, 3, 4, 44, 45), 4),
                 Arguments.of(List.of(1, 2, 3, 43, 44, 45), 3),

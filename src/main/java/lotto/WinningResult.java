@@ -4,8 +4,8 @@ public enum WinningResult {
     FIRST("1등", "6개 번호 일치", 6, 2_000_000_000),
     SECOND("2등", "5개 번호 + 보너스 번호 일치", 5, 30_000_000),
     THIRD("3등", "5개 번호 일치", 5, 1_500_000),
-    FOURTH("4등", "4개 번호 일치", 5, 50_000),
-    FIFTH("5등", "3개 번호 일치", 5, 5_000),
+    FOURTH("4등", "4개 번호 일치", 4, 50_000),
+    FIFTH("5등", "3개 번호 일치", 3, 5_000),
     NONE("", "", 0, 0),
     ;
     private final String label;
@@ -21,20 +21,22 @@ public enum WinningResult {
     }
 
     public static WinningResult of(int matchCount, boolean matchBonusBall) {
-        if (checkSecond(matchCount, matchBonusBall)) {
-            return SECOND;
-        }
         for (WinningResult result : WinningResult.values()) {
-            if (result.matchCount == matchCount) {
+            if (checkCondition(result, matchCount, matchBonusBall)) {
                 return result;
             }
         }
         return NONE;
     }
 
-    private static boolean checkSecond(int matchCount, boolean matchBonusBall) {
-        return matchCount == WinningResult.SECOND.getMatchCount()
-                && matchBonusBall;
+    private static boolean checkCondition(WinningResult result, int matchCount, boolean matchBonusBall) {
+        if (result == SECOND
+                && SECOND.matchCount == matchCount
+                && matchBonusBall) {
+            return true;
+        }
+        return result != SECOND
+                && matchCount == result.matchCount;
     }
 
     public String getLabel() {

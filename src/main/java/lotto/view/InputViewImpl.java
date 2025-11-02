@@ -25,4 +25,9 @@ public class InputViewImpl implements InputView {
     public Integer readBonusNumber() {
         return Parser.toInteger(Console.readLine());
     }
+
+    @Override
+    public void close() {
+        Console.close();
+    }
 }

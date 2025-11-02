@@ -30,6 +30,8 @@ public class Controller {
             printResults(lottoTickets, winningLotto, lottoMoney);
         } catch (IllegalArgumentException e) {
             outputView.printError(e.getMessage());
+        } finally {
+            inputView.close();
         }
     }
 

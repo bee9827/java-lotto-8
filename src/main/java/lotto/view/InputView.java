@@ -8,4 +8,6 @@ public interface InputView {
     List<Integer> readWinningNumbers();
 
     Integer readBonusNumber();
+
+    void close();
 }

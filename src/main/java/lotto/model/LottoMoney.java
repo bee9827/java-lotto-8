@@ -29,7 +29,7 @@ public class LottoMoney {
 
     public double getRevenueRate(Long revenue) {
         if (usedMoney == 0) {
-            throw new IllegalStateException(LottoErrorCode.MONEY_UNIT.getMessage());
+            throw new IllegalStateException(LottoErrorCode.MONEY_NOT_USED.getMessage());
         }
         return revenue.doubleValue() / usedMoney * PERCENTAGE;
     }

@@ -44,6 +44,12 @@ public class Controller {
         return lottoTickets;
     }
 
+    private WinningLotto createWinningLotto() {
+        List<Integer> numbers = inputView.readWinningNumbers();
+        Integer bonusNumber = inputView.readBonusNumber();
+        return new WinningLotto(numbers, bonusNumber);
+    }
+
     private void printResults(List<Lotto> lottoTickets, WinningLotto winningLotto, LottoMoney lottoMoney) {
         List<WinningResult> results = lottoTickets.stream()
                 .map(winningLotto::matching)
@@ -54,11 +60,5 @@ public class Controller {
 
         outputView.printWinningResult(results);
         outputView.printRevenueRate(lottoMoney.getRevenueRate(revenue));
-    }
-
-    private WinningLotto createWinningLotto() {
-        List<Integer> numbers = inputView.readWinningNumbers();
-        Integer bonusNumber = inputView.readBonusNumber();
-        return new WinningLotto(numbers, bonusNumber);
     }
 }

@@ -2,6 +2,7 @@ package lotto.model;
 
 import java.util.HashSet;
 import java.util.List;
+import lotto.controller.dto.LottoDto;
 import lotto.error.LottoErrorCode;
 
 public class Lotto {
@@ -15,7 +16,7 @@ public class Lotto {
     }
 
     private void validateSize(List<Integer> numbers) {
-        if (numbers.size() != SIZE) {
+        if (numbers == null || numbers.size() != SIZE) {
             throw new IllegalArgumentException(LottoErrorCode.NUMBERS_SIZE.getMessage());
         }
     }
@@ -46,6 +47,15 @@ public class Lotto {
 
     protected boolean contains(LottoNumber number) {
         return numbers.contains(number);
+    }
+
+    public LottoDto getSortedNumbers() {
+        return new LottoDto(
+                numbers.stream()
+                        .sorted()
+                        .map(LottoNumber::getValue)
+                        .toList()
+        );
     }
 
     @Override

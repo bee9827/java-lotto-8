@@ -1,6 +1,7 @@
 package lotto.view;
 
 import java.util.List;
+import lotto.controller.dto.LottoDto;
 import lotto.model.Lotto;
 import lotto.model.WinningResult;
 
@@ -19,13 +20,13 @@ public class ViewFormatter {
         return "보너스 번호를 입력해 주세요.";
     }
 
-    public static String printTickets(List<Lotto> lottoTickets) {
+    public static String printTickets(List<LottoDto> lottoTickets) {
         StringBuilder sb = new StringBuilder();
         sb.append(System.lineSeparator())
                 .append(lottoTickets.size())
                 .append("개를 구매했습니다.")
                 .append(System.lineSeparator());
-        for (Lotto lotto : lottoTickets) {
+        for (LottoDto lotto : lottoTickets) {
             sb.append(lotto.toString())
                     .append(System.lineSeparator());
         }

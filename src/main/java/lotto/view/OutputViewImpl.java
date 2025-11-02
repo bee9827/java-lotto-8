@@ -1,12 +1,13 @@
 package lotto.view;
 
 import java.util.List;
+import lotto.controller.dto.LottoDto;
 import lotto.model.Lotto;
 import lotto.model.WinningResult;
 
 public class OutputViewImpl implements OutputView {
     @Override
-    public void printTickets(List<Lotto> lottoTickets) {
+    public void printTickets(List<LottoDto> lottoTickets) {
         System.out.println(ViewFormatter.printTickets(lottoTickets));
     }
 

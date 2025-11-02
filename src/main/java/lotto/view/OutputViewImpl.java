@@ -39,10 +39,9 @@ public class OutputViewImpl implements OutputView {
 
     private String winningResultFormat(List<WinningResult> results) {
         StringBuilder sb = new StringBuilder();
-        sb.append("당첨 통계")
-                .append(System.lineSeparator())
-                .append("---")
-                .append(System.lineSeparator());
+        sb.append(System.lineSeparator())
+                .append("당첨 통계").append(System.lineSeparator())
+                .append("---").append(System.lineSeparator());
         for (WinningResult result : WinningResult.getValues()) {
             if (result == WinningResult.NONE) {
                 continue;

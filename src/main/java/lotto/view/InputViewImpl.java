@@ -23,7 +23,7 @@ public class InputViewImpl implements InputView {
 
     @Override
     public Integer readBonusNumber() {
-        System.out.println("보너스 번호를 입력해 주세요.");
+        System.out.println(System.lineSeparator() + "보너스 번호를 입력해 주세요.");
         return Parser.toInteger(Console.readLine());
     }
 

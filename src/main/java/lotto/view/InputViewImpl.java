@@ -7,13 +7,13 @@ import lotto.util.Parser;
 public class InputViewImpl implements InputView {
     @Override
     public long readPurchaseCost() {
-        System.out.println(ViewFormatter.readPurchaseCost());
+        System.out.println("구입금액을 입력해 주세요.");
         return Parser.toLong(Console.readLine());
     }
 
     @Override
     public List<Integer> readWinningNumbers() {
-        System.out.println(ViewFormatter.readWinningNumbers());
+        System.out.println("당첨 번호를 입력해 주세요.");
         String values = Console.readLine();
 
         return Parser.split(values).stream()
@@ -23,6 +23,7 @@ public class InputViewImpl implements InputView {
 
     @Override
     public Integer readBonusNumber() {
+        System.out.println("보너스 번호를 입력해 주세요.");
         return Parser.toInteger(Console.readLine());
     }
 

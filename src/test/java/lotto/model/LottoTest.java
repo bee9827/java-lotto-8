@@ -5,7 +5,6 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.List;
 import java.util.stream.Stream;
-import lotto.controller.dto.LottoDto;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
@@ -63,9 +62,8 @@ class LottoTest {
     @Test
     void getSortedNumbers() {
         Lotto lotto = new Lotto(getDefaultNumbers().reversed());
-        LottoDto expected = new LottoDto(getDefaultNumbers());
 
-        assertThat(lotto.getSortedNumbers()).isEqualTo(expected);
+        assertThat(lotto.getSortedNumbers()).isEqualTo(getDefaultNumbers());
     }
 
     @Nested

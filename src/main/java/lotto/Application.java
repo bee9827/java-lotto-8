@@ -1,20 +1,19 @@
 package lotto;
 
-import lotto.controller.Controller;
+import lotto.controller.LottoController;
+import lotto.error.ErrorHandler;
 import lotto.model.LottoMachine;
 import lotto.model.RandomLottoMachine;
 import lotto.view.InputView;
-import lotto.view.InputViewImpl;
 import lotto.view.OutputView;
-import lotto.view.OutputViewImpl;
 
 public class Application {
     public static void main(String[] args) {
-        InputView inputView = new InputViewImpl();
-        OutputView outputView = new OutputViewImpl();
         LottoMachine lottoMachine = new RandomLottoMachine();
+        InputView inputView = new InputView();
+        OutputView outputView = new OutputView();
+        LottoController lottoController = new LottoController(inputView, outputView, lottoMachine);
 
-        Controller controller = new Controller(inputView, outputView, lottoMachine);
-        controller.run();
+        ErrorHandler.illegalArgument(lottoController::run);
     }
 }

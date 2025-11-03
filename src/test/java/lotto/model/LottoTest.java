@@ -15,10 +15,14 @@ import org.junit.jupiter.params.provider.MethodSource;
 import org.junit.jupiter.params.provider.NullSource;
 
 class LottoTest {
-    public static final Lotto DEFAULT_LOTTO = new Lotto(getDefaultNumbers());
+    private static final Lotto DEFAULT_LOTTO = new Lotto(getDefaultNumbers());
 
     public static List<Integer> getDefaultNumbers() {
         return List.of(1, 2, 3, 4, 5, 6);
+    }
+
+    public static Lotto getDefaultLotto() {
+        return DEFAULT_LOTTO;
     }
 
     public static Stream<Arguments> matchCount() {

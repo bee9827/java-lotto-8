@@ -12,11 +12,16 @@ import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
 class WinningLottoTest {
-    public static final WinningLotto DEFAULT_WINNING_LOTTO
-            = new WinningLotto(LottoTest.getDefaultNumbers(), getDEFAULT_BONUS_NUMBER());
+    private static final int DEFAULT_BONUS_NUMBER = 7;
+    private static final WinningLotto DEFAULT_WINNING_LOTTO
+            = new WinningLotto(LottoTest.getDefaultNumbers(), getDefaultBonusNumbers());
 
-    private static Integer getDEFAULT_BONUS_NUMBER() {
-        return 7;
+    public static int getDefaultBonusNumbers() {
+        return DEFAULT_BONUS_NUMBER;
+    }
+
+    public static WinningLotto getDefaultWinningLotto() {
+        return DEFAULT_WINNING_LOTTO;
     }
 
     public static Stream<Arguments> matching() {

@@ -2,7 +2,6 @@ package lotto.model;
 
 import java.util.HashSet;
 import java.util.List;
-import lotto.controller.dto.LottoDto;
 import lotto.error.LottoErrorCode;
 
 public class Lotto {
@@ -49,13 +48,11 @@ public class Lotto {
         return numbers.contains(number);
     }
 
-    public LottoDto getSortedNumbers() {
-        return new LottoDto(
-                numbers.stream()
-                        .sorted()
-                        .map(LottoNumber::getValue)
-                        .toList()
-        );
+    public List<Integer> getSortedNumbers() {
+        return numbers.stream()
+                .sorted()
+                .map(LottoNumber::getValue)
+                .toList();
     }
 
     @Override

@@ -31,7 +31,8 @@ public class LottoController {
             List<WinningResult> results = getResults(lottoTickets, winningLotto);
             outputView.printWinningResult(results);
 
-            double revenueRate = lottoMoney.getRevenueRate(getRevenue(lottoTickets, winningLotto));
+            Long totalRevenue = getRevenue(lottoTickets, winningLotto);
+            double revenueRate = lottoMoney.getRevenueRate(totalRevenue);
             outputView.printRevenueRate(revenueRate);
         } finally {
             inputView.close();

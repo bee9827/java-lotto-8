@@ -1,8 +1,5 @@
 package lotto.error;
 
-import lotto.view.InputView;
-import lotto.view.OutputView;
-
 public class ErrorHandler {
     public static final String ERROR_PREFIX = "[ERROR] ";
 

@@ -34,8 +34,8 @@ class WinningLottoTest {
 
     @DisplayName("new WinningLotto(List,Integer): [예외] - 중복된 보너스번호")
     @Test
-    void constructor(){
-        assertThatThrownBy(()-> new WinningLotto(List.of(1,2,3,4,5,6),6))
+    void constructor() {
+        assertThatThrownBy(() -> new WinningLotto(List.of(1, 2, 3, 4, 5, 6), 6))
                 .isInstanceOf(IllegalArgumentException.class);
 
     }

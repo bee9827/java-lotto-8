@@ -33,7 +33,7 @@ public class LottoController {
 
             double revenueRate = lottoMoney.getRevenueRate(getRevenue(lottoTickets, winningLotto));
             outputView.printRevenueRate(revenueRate);
-        }finally {
+        } finally {
             inputView.close();
         }
     }

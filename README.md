@@ -1,7 +1,60 @@
 # java-lotto-precourse
 
-# 구현 기능 목록
+# 그래프 다이어그램
+```mermaid
+graph LR
+  subgraph View
+    IV[IutputView]
+    OV[OnputView]
+  end
 
+  subgraph Controller
+    LC[LottoController]
+  end
+
+  subgraph Domain
+    subgraph LottoTicket
+      L[Lotto]
+      WL[WinningLotto]
+      LottoResult
+    end
+
+    subgraph VO
+      LN[LottoNumber]
+    end
+
+    subgraph TicketMachine
+      LM[LottoMachine]
+      RLM[RandomLottoMachine]
+    end
+
+    LMY[LottoMoney]
+  end
+  subgraph etc
+    LottoDto
+    Parser
+  end
+  subgraph Error
+    LottoErrorCode
+    ErrorHandler
+  end
+
+  Controller -- "**1. 입력 요청**" --> IV
+  Controller -- "**2. 데이터 가공**" --> Domain
+  Controller -- "**3. 출력 요청**" --> OV
+  ErrorHandler --"발생하는 **에러 처리**"--> Controller
+
+
+WL --"상속"--> L
+WL --> LN
+L --> LN
+L --> LottoDto
+RLM --> LM
+LM --> L
+WL --> LottoResult
+```
+
+# 구현 기능 목록
 ## 도메인 구성 사항(Model)
 
 ### 로또 번호(VO)
@@ -136,3 +189,5 @@
 6개 일치 (2,000,000,000원) - 0개
 총 수익률은 62.5%입니다.
 ```
+
+# 구현시 고민한 것

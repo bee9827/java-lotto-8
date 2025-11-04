@@ -33,8 +33,8 @@ public class IntegrationTest {
 
     @Test
     void test() {
-        LottoMachine fixedLottoMachine = getDefaultLottoGenerator();
-        LottoController lottoController = new LottoController(new InputView(), new OutputView(), fixedLottoMachine);
+        NumberGenerator fixedNumberGenerator = getDefaultLottoGenerator();
+        LottoController lottoController = new LottoController(new InputView(), new OutputView(), fixedNumberGenerator);
 
         lottoController.run();
 
@@ -53,7 +53,7 @@ public class IntegrationTest {
                         "총 수익률은 200,000,000.0%입니다.");
     }
 
-    private LottoMachine getDefaultLottoGenerator() {
+    private NumberGenerator getDefaultLottoGenerator() {
         return (n) -> {
             List<Lotto> ret = new ArrayList<>();
             for (int i = 0; i < n; i++) {

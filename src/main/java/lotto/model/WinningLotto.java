@@ -3,24 +3,25 @@ package lotto.model;
 import java.util.List;
 import lotto.error.LottoErrorCode;
 
-public class WinningLotto extends Lotto {
+public class WinningLotto {
+    private final Lotto lotto;
     private final LottoNumber bonusNumber;
 
-    public WinningLotto(List<Integer> numbers, Integer bonusNumber) {
-        super(numbers);
+    public WinningLotto(List<Integer> lotto, Integer bonusNumber) {
+        this.lotto = new Lotto(lotto);
         validateBonusNumberDuplicate(bonusNumber);
         this.bonusNumber = new LottoNumber(bonusNumber);
     }
 
     private void validateBonusNumberDuplicate(Integer bonusNumber) {
         LottoNumber lottoNumber = new LottoNumber(bonusNumber);
-        if (super.contains(lottoNumber)) {
+        if (lotto.contains(lottoNumber)) {
             throw new IllegalArgumentException(LottoErrorCode.BONUS_NUMBER_DUPLICATED.getMessage());
         }
     }
 
     public WinningResult matching(Lotto lotto) {
-        return WinningResult.of(matchCount(lotto), matchBonusNumber(lotto));
+        return WinningResult.of(lotto.matchCount(this.lotto), matchBonusNumber(lotto));
     }
 
     public long revenue(Lotto lotto) {

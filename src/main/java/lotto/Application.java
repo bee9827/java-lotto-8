@@ -1,19 +1,18 @@
 package lotto;
 
 import lotto.controller.LottoController;
-import lotto.error.ErrorHandler;
-import lotto.model.LottoMachine;
-import lotto.model.RandomLottoMachine;
+import lotto.model.NumberGenerator;
+import lotto.model.RandomNumberGenerator;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
 public class Application {
     public static void main(String[] args) {
-        LottoMachine lottoMachine = new RandomLottoMachine();
+        NumberGenerator numberGenerator = new RandomNumberGenerator();
         InputView inputView = new InputView();
         OutputView outputView = new OutputView();
-        LottoController lottoController = new LottoController(inputView, outputView, lottoMachine);
+        LottoController lottoController = new LottoController(inputView, outputView, numberGenerator);
 
-        ErrorHandler.illegalArgument(lottoController::run);
+        lottoController.run();
     }
 }

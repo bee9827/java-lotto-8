@@ -255,7 +255,7 @@ class LottoController{
     public void run() {
         try {
             LottoMoney lottoMoney = new LottoMoney(inputView.readPurchaseCost());
-            List<Lotto> lottoTickets = lottoMachine.issueTickets(lottoMoney.purchaseTicket());
+            List<Lotto> lottoTickets = numberGenerator.issueTickets(lottoMoney.purchaseTicket());
             outputView.printTickets(getTicketsDto(lottoTickets));
 
             WinningLotto winningLotto = new WinningLotto(inputView.readWinningNumbers(), inputView.readBonusNumber());

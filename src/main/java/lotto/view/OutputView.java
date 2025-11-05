@@ -9,7 +9,7 @@ public class OutputView {
         System.out.println(ticketsFormat(lottoTickets));
     }
 
-    public void printWinningResult(List<WinningRank> results) {
+    public void printWinningResult(WinningResult results) {
         System.out.print(winningResultFormat(results));
     }
 
@@ -27,26 +27,28 @@ public class OutputView {
         return sb.toString();
     }
 
-    private String winningResultFormat(List<WinningRank> results) {
+    private String winningResultFormat(WinningResult result) {
         StringBuilder sb = new StringBuilder();
         sb.append(System.lineSeparator())
                 .append("당첨 통계").append(System.lineSeparator())
                 .append("---").append(System.lineSeparator());
-        for (WinningRank result : WinningRank.getValues()) {
-            if (result == WinningRank.NONE) {
-                continue;
-            }
-            sb.append("%s (%,d원) - %d개%n"
-                    .formatted(result.getCondition(), result.getPrize(), getCount(results, result)));
+        for (WinningRank rank : getRanks()) {
+            sb.append("%s (%,d원) - %,d개%n"
+                    .formatted(getCondition(rank), rank.getPrize(), result.getCount(rank)));
         }
         return sb.toString();
     }
 
-    private int getCount(List<WinningRank> results, WinningRank result) {
-        return results.stream()
-                .filter(r -> r == result)
-                .toList()
-                .size();
+    private String getCondition(WinningRank rank) {
+        String conditionFormat = rank.getMatchCount() + "개 일치";
+        if (rank == WinningRank.SECOND) {
+            conditionFormat += ", 보너스 볼 일치";
+        }
+        return conditionFormat;
+    }
+
+    private List<WinningRank> getRanks() {
+        return List.of(WinningRank.FIFTH, WinningRank.FOURTH, WinningRank.THIRD, WinningRank.SECOND, WinningRank.FIRST);
     }
 
     private String revenueRateFormat(double revenueRate) {

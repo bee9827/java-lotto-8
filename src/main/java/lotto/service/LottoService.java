@@ -2,14 +2,15 @@ package lotto.service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 import lotto.controller.dto.LottoDto;
 import lotto.model.Lotto;
 import lotto.model.LottoNumber;
 import lotto.model.NumberGenerator;
 import lotto.model.WinningLotto;
-import lotto.model.WinningRank;
 import lotto.repository.LottoRepository;
 import lotto.repository.WinningLottoRepository;
+import lotto.view.WinningResult;
 
 public class LottoService {
     private final WinningLottoRepository winningLottoRepository;
@@ -47,10 +48,10 @@ public class LottoService {
                 .toList();
     }
 
-    public List<WinningRank> getResults() {
-        return getAllLotto().stream()
+    public WinningResult getResults() {
+        return new WinningResult(getAllLotto().stream()
                 .map(getLastWinningLotto()::matching)
-                .toList();
+                .collect(Collectors.groupingBy(rank -> rank, Collectors.counting())));
     }
 
     public Long getRevenue() {

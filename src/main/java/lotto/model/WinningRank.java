@@ -3,7 +3,7 @@ package lotto.model;
 import java.util.Arrays;
 import java.util.List;
 
-public enum WinningResult {
+public enum WinningRank {
     FIRST("1등", "6개 일치", 6, 2_000_000_000),
     SECOND("2등", "5개 일치, 보너스 볼 일치", 5, 30_000_000),
     THIRD("3등", "5개 일치", 5, 1_500_000),
@@ -16,15 +16,15 @@ public enum WinningResult {
     private final int matchCount;
     private final long prize;
 
-    WinningResult(String label, String condition, int matchCount, long prize) {
+    WinningRank(String label, String condition, int matchCount, long prize) {
         this.label = label;
         this.condition = condition;
         this.matchCount = matchCount;
         this.prize = prize;
     }
 
-    public static WinningResult of(int matchCount, boolean matchBonusBall) {
-        for (WinningResult result : WinningResult.values()) {
+    public static WinningRank of(int matchCount, boolean matchBonusBall) {
+        for (WinningRank result : WinningRank.values()) {
             if (checkCondition(result, matchCount, matchBonusBall)) {
                 return result;
             }
@@ -32,7 +32,7 @@ public enum WinningResult {
         return NONE;
     }
 
-    private static boolean checkCondition(WinningResult result, int matchCount, boolean matchBonusBall) {
+    private static boolean checkCondition(WinningRank result, int matchCount, boolean matchBonusBall) {
         if (result == SECOND
                 && SECOND.matchCount == matchCount
                 && matchBonusBall) {
@@ -42,8 +42,8 @@ public enum WinningResult {
                 && matchCount == result.matchCount;
     }
 
-    public static List<WinningResult> getValues() {
-        return Arrays.stream(WinningResult.values())
+    public static List<WinningRank> getValues() {
+        return Arrays.stream(WinningRank.values())
                 .toList()
                 .reversed();
     }

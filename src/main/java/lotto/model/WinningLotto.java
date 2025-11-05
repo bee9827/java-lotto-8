@@ -20,12 +20,12 @@ public class WinningLotto {
         }
     }
 
-    public WinningResult matching(Lotto lotto) {
-        return WinningResult.of(lotto.matchCount(this.lotto), matchBonusNumber(lotto));
+    public WinningRank matching(Lotto lotto) {
+        return WinningRank.of(lotto.matchCount(this.lotto), matchBonusNumber(lotto));
     }
 
     public long revenue(Lotto lotto) {
-        WinningResult result = matching(lotto);
+        WinningRank result = matching(lotto);
         return result.getPrize();
     }
 

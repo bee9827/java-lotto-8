@@ -9,32 +9,36 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.PrintStream;
 import java.nio.charset.StandardCharsets;
-import java.util.ArrayList;
-import java.util.List;
 import lotto.controller.LottoController;
+import lotto.repository.LottoRepository;
+import lotto.repository.WinningLottoRepository;
+import lotto.service.LottoService;
 import lotto.view.InputView;
 import lotto.view.OutputView;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 public class IntegrationTest {
 
     private OutputStream output;
+    private InputStream input;
 
     @BeforeEach
     void init() throws IOException {
         String fakeInput = "5000\n1,2,3,4,5,6\n7";
-        InputStream inputStream = new ByteArrayInputStream(fakeInput.getBytes(StandardCharsets.UTF_8));
-
+        input = new ByteArrayInputStream(fakeInput.getBytes(StandardCharsets.UTF_8));
         output = new ByteArrayOutputStream();
-        System.setIn(inputStream);
+        System.setIn(input);
         System.setOut(new PrintStream(output));
     }
 
     @Test
     void test() {
         NumberGenerator fixedNumberGenerator = getDefaultLottoGenerator();
-        LottoController lottoController = new LottoController(new InputView(), new OutputView(), fixedNumberGenerator);
+        LottoService lottoService = new LottoService(new WinningLottoRepository(), new LottoRepository());
+        LottoController lottoController = new LottoController(new InputView(), new OutputView(), lottoService,
+                fixedNumberGenerator);
 
         lottoController.run();
 
@@ -54,12 +58,6 @@ public class IntegrationTest {
     }
 
     private NumberGenerator getDefaultLottoGenerator() {
-        return (n) -> {
-            List<Lotto> ret = new ArrayList<>();
-            for (int i = 0; i < n; i++) {
-                ret.add(new Lotto(LottoTest.getDefaultNumbers()));
-            }
-            return ret;
-        };
+        return (min, max, length) -> LottoTest.getDefaultNumbers();
     }
 }

@@ -2,14 +2,14 @@ package lotto.view;
 
 import java.util.List;
 import lotto.controller.dto.LottoDto;
-import lotto.model.WinningResult;
+import lotto.model.WinningRank;
 
 public class OutputView {
     public void printTickets(List<LottoDto> lottoTickets) {
         System.out.println(ticketsFormat(lottoTickets));
     }
 
-    public void printWinningResult(List<WinningResult> results) {
+    public void printWinningResult(List<WinningRank> results) {
         System.out.print(winningResultFormat(results));
     }
 
@@ -27,13 +27,13 @@ public class OutputView {
         return sb.toString();
     }
 
-    private String winningResultFormat(List<WinningResult> results) {
+    private String winningResultFormat(List<WinningRank> results) {
         StringBuilder sb = new StringBuilder();
         sb.append(System.lineSeparator())
                 .append("당첨 통계").append(System.lineSeparator())
                 .append("---").append(System.lineSeparator());
-        for (WinningResult result : WinningResult.getValues()) {
-            if (result == WinningResult.NONE) {
+        for (WinningRank result : WinningRank.getValues()) {
+            if (result == WinningRank.NONE) {
                 continue;
             }
             sb.append("%s (%,d원) - %d개%n"
@@ -42,7 +42,7 @@ public class OutputView {
         return sb.toString();
     }
 
-    private int getCount(List<WinningResult> results, WinningResult result) {
+    private int getCount(List<WinningRank> results, WinningRank result) {
         return results.stream()
                 .filter(r -> r == result)
                 .toList()

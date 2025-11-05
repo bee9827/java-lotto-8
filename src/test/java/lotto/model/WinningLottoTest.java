@@ -26,14 +26,14 @@ class WinningLottoTest {
 
     public static Stream<Arguments> matching() {
         return Stream.of(
-                Arguments.of(new Lotto(List.of(1, 2, 3, 4, 5, 6)), WinningResult.FIRST),
-                Arguments.of(new Lotto(List.of(1, 2, 3, 4, 5, 7)), WinningResult.SECOND),
-                Arguments.of(new Lotto(List.of(1, 2, 3, 4, 5, 45)), WinningResult.THIRD),
-                Arguments.of(new Lotto(List.of(1, 2, 3, 4, 44, 45)), WinningResult.FOURTH),
-                Arguments.of(new Lotto(List.of(1, 2, 3, 43, 44, 45)), WinningResult.FIFTH),
-                Arguments.of(new Lotto(List.of(1, 2, 42, 43, 44, 45)), WinningResult.NONE),
-                Arguments.of(new Lotto(List.of(1, 41, 42, 43, 44, 45)), WinningResult.NONE),
-                Arguments.of(new Lotto(List.of(40, 41, 42, 43, 44, 45)), WinningResult.NONE)
+                Arguments.of(new Lotto(List.of(1, 2, 3, 4, 5, 6)), WinningRank.FIRST),
+                Arguments.of(new Lotto(List.of(1, 2, 3, 4, 5, 7)), WinningRank.SECOND),
+                Arguments.of(new Lotto(List.of(1, 2, 3, 4, 5, 45)), WinningRank.THIRD),
+                Arguments.of(new Lotto(List.of(1, 2, 3, 4, 44, 45)), WinningRank.FOURTH),
+                Arguments.of(new Lotto(List.of(1, 2, 3, 43, 44, 45)), WinningRank.FIFTH),
+                Arguments.of(new Lotto(List.of(1, 2, 42, 43, 44, 45)), WinningRank.NONE),
+                Arguments.of(new Lotto(List.of(1, 41, 42, 43, 44, 45)), WinningRank.NONE),
+                Arguments.of(new Lotto(List.of(40, 41, 42, 43, 44, 45)), WinningRank.NONE)
         );
     }
 
@@ -48,8 +48,8 @@ class WinningLottoTest {
     @DisplayName("matching: 각 등수에 맞는 Enum을 리턴한다")
     @ParameterizedTest(name = "({0}), result: {1}")
     @MethodSource
-    void matching(Lotto lotto, WinningResult expected) {
-        WinningResult result = DEFAULT_WINNING_LOTTO.matching(lotto);
+    void matching(Lotto lotto, WinningRank expected) {
+        WinningRank result = DEFAULT_WINNING_LOTTO.matching(lotto);
 
         assertThat(result).isEqualTo(expected);
     }

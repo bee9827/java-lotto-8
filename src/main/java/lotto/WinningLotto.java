@@ -20,7 +20,7 @@ public class WinningLotto {
         return this.lotto.matchCount(lotto);
     }
 
-    public boolean matchBonus(LottoNumber bonusNumber) {
-        return this.bonusNumber.equals(bonusNumber);
+    public boolean matchBonus(Lotto lotto) {
+        return lotto.contains(this.bonusNumber);
     }
 }

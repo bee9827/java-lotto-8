@@ -27,7 +27,13 @@ public class Lotto {
         return numbers.stream().distinct().count();
     }
 
-    public boolean contains(LottoNumber number) {
+    public long matchCount(Lotto other) {
+        return other.numbers.stream()
+                .filter(this.numbers::contains)
+                .count();
+    }
+
+    protected boolean contains(LottoNumber number) {
         return numbers.contains(number);
     }
 }

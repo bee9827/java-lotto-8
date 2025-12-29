@@ -1,16 +1,32 @@
 package lotto;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Stream;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.CsvSource;
+import org.junit.jupiter.params.provider.MethodSource;
 
 class LottoTest {
+
+    public static Stream<Arguments> matchCount() {
+        return Stream.of(
+                Arguments.of(0L,new Lotto(List.of(1,2,3,4,5,6)),new Lotto(List.of(11,12,13,14,15,16))),
+                Arguments.of(1L,new Lotto(List.of(1,2,3,4,5,6)),new Lotto(List.of(1,12,13,14,15,16))),
+                Arguments.of(2L,new Lotto(List.of(1,2,3,4,5,6)),new Lotto(List.of(1,2,13,14,15,16))),
+                Arguments.of(3L,new Lotto(List.of(1,2,3,4,5,6)),new Lotto(List.of(1,2,3,14,15,16))),
+                Arguments.of(4L,new Lotto(List.of(1,2,3,4,5,6)),new Lotto(List.of(1,2,3,4,15,16))),
+                Arguments.of(5L,new Lotto(List.of(1,2,3,4,5,6)),new Lotto(List.of(1,2,3,4,5,16))),
+                Arguments.of(6L,new Lotto(List.of(1,2,3,4,5,6)),new Lotto(List.of(1,2,3,4,5,6)))
+        );
+    }
 
     @DisplayName("new Lotto(): ")
     @Nested
@@ -50,5 +66,11 @@ class LottoTest {
                     .isInstanceOf(IllegalArgumentException.class);
         }
     }
-    // TODO: 추가 기능 구현에 따른 테스트 코드 작성
+    @ParameterizedTest(name = "{0}개 동일")
+    @DisplayName("일치하는 번호 개수를 리턴한다.")
+    @MethodSource
+    public void matchCount(Long matchCount,Lotto lotto, Lotto otherLotto) {
+        assertThat(lotto.matchCount(otherLotto)).isEqualTo(matchCount);
+    }
+
 }

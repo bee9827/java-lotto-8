@@ -9,7 +9,8 @@ public class LottoNumber {
 
     public LottoNumber(Integer number) {
         if (number < NUMBER_MIN || number > NUMBER_MAX) {
-            throw new IllegalArgumentException("로또 번호는 %d에서 %d 사이의 숫자여야 합니다.");
+            throw new IllegalArgumentException(
+                    "로또 번호는 %d에서 %d 사이의 숫자여야 합니다.".formatted(NUMBER_MIN, NUMBER_MAX));
         }
         this.number = number;
     }

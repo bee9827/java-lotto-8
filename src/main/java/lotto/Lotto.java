@@ -16,7 +16,7 @@ public class Lotto {
 
     private void validate(List<Integer> numbers) {
         if (numbers.size() != NUMBER_LENGTH) {
-            throw new IllegalArgumentException("로또 번호는 6개여야 합니다.");
+            throw new IllegalArgumentException("로또 번호는 %d개여야 합니다.".formatted(NUMBER_LENGTH));
         }
         if (getDistinctCount(numbers) != numbers.size()) {
             throw new IllegalArgumentException("로또 번호는 중복될 수 없습니다.");

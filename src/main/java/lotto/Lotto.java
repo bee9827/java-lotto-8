@@ -33,7 +33,23 @@ public class Lotto {
                 .count();
     }
 
+    public List<Integer> getNumbers() {
+        return numbers.stream()
+                .map(LottoNumber::getNumber)
+                .toList();
+    }
+
     protected boolean contains(LottoNumber number) {
         return numbers.contains(number);
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        return super.equals(obj);
+    }
+
+    @Override
+    public int hashCode() {
+        return super.hashCode();
     }
 }
